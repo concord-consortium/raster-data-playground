@@ -1,0 +1,15 @@
+{
+  "name": "city-locator",
+  "version": "1.0.0",
+  "description": "Spatial index for city locations",
+  "main": "create-index.js",
+  "type": "module",
+  "scripts": {
+    "create-index": "node create-index.js"
+  },
+  "dependencies": {
+    "kdbush": "4.0.2",
+    "pngjs": "^7.0.0",
+    "shapefile": "^0.6.6"
+  }
+}
