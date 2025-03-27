@@ -42,3 +42,16 @@ This project contains various scripts for processing and analyzing spatial and r
 - kdbush: For spatial indexing
 - shapefile: For processing shapefile data
 - pngjs: For PNG image processing
+
+# Rainfall notes
+Many of these scripts were written to figure out the legend scale of the Rainfall NEO dataset:
+https://neo.gsfc.nasa.gov/view.php?datasetId=GPM_3IMERGM
+
+Here is some information about this dataset:
+- the 1 deg CSV has 154 unique values
+- the 0.25 deg CSV has 160 unique values
+- the 0.1 deg CSV has 163 unique values
+- All 3 of these files have a gap at the beginning of the values. They jump from 1 to 1.94. And in the palette of colors this jump is from palette index 0 to palette index 23.
+- The best fitting function I've found so far is: 0.9704e^(0.030162*(palette_index))
+- The key was to ignore the `0` palette point. My guess is that is a catch all so it is outside of the exponential scale.
+- from the script `0.970333137394295e^(0.030162080993408915*palette_index)`, is nearly perfect. It just has +/- 0.1 in a few places.

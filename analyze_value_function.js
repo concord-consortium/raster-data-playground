@@ -9,7 +9,7 @@ const data = lines.map(line => {
 });
 
 // Sort by palette index and filter out 99999.00 values
-const validData = data.filter(d => d.value !== 99999.00).sort((a, b) => a.paletteIndex - b.paletteIndex);
+const validData = data.filter(d => d.value !== 99999.00 && d.paletteIndex !== 0).sort((a, b) => a.paletteIndex - b.paletteIndex);
 
 // Extract x (palette index) and y (value) arrays for analysis
 const x = validData.map(d => d.paletteIndex);
@@ -82,7 +82,7 @@ const a = Math.exp(lnA);
 
 const expFunc = x => a * Math.exp(bExp * x);
 const expRSquared = rSquared(x, y, expFunc);
-console.log(`Exponential function: f(x) = ${a.toFixed(4)}e^(${bExp.toFixed(4)}x)`);
+console.log(`Exponential function: f(x) = ${a}e^(${bExp}x)`);
 console.log(`R-squared for exponential fit: ${expRSquared.toFixed(4)}`);
 
 // 3. Power function: f(x) = ax^b
